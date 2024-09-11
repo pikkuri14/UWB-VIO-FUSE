@@ -1,0 +1,16 @@
+<launch>  
+  <!-- <node pkg="robot_localization" type="ekf_localization_node" name="ekf_node_LOS" clear_params="true">
+    <rosparam command="load" file="$(find uwb)/config/ekf.yaml" />
+    <remap from="odometry/filtered" to="odometry/filtered_LOS"/>
+  </node> -->
+
+  <node pkg="robot_localization" type="ekf_localization_node" name="ekf_node_NLOS" clear_params="true">
+    <rosparam command="load" file="$(find uwb)/config/ekf_nlos.yaml" />
+    <remap from="odometry/filtered" to="odometry/filtered_NLOS"/>
+  </node>
+
+  <node pkg="uwb" type="realsense_noisy.py" name="realsense_sensor_node"></node>
+  <node pkg="uwb" type="uwbmultilateration.py" name="uwb_sensor_node"></node>
+  
+
+</launch>
